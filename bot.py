@@ -1,7 +1,6 @@
 from discord.ext.commands import Bot, when_mentioned_or
 from discord import Embed, Color, File
 from os import listdir
-from util import emoji,snipe
 from os.path import isfile, join
 from discord import Game
 import random
@@ -15,7 +14,7 @@ client.remove_command("help")
 @client.event
 async def on_ready():
     #await client.change_presence(activity=Game(name=" FAKE MILOS "))
-    await client.change_presence(activity=Game(name="Translate in "+str(len(client.guilds))+" Servers "))
+    await client.change_presence(activity=Game(name="Hacking in "+str(len(client.guilds))+" Servers "))
     #emoji.cone=emoji.Emoji(client)
     print('Logged in as')
     print(client.user.name)
