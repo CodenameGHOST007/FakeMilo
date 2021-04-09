@@ -1,0 +1,7 @@
+discord>=1.0.1
+splinter
+humanfriendly
+dblpy
+aiohttp
+requests
+pybase64
