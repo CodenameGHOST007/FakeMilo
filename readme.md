@@ -1,6 +1,6 @@
 # FakeMilo
 
-FakeMilo is an educational discord bot where you can compete with your friends to a battle of trivia questions.
+FakeMilo is an educational discord bot where you can organise a tournament and compete with your friends to a battle of trivia questions.
 
 <a href="https://hack36.com"> <img src="http://bit.ly/BuiltAtHack36" height=20px> </a>
 
@@ -10,22 +10,22 @@ The features of the bot are split into 4 cogs (as of now) each of which caters t
 
 The cogs used here are:
 
-- <b>exe2</b> : Used for maintenance
+- <b>exe2</b> : Admin only command used to run code snippets without actually needing to modify the code. For on the go testing.
 - <b>help</b> : Caters to ```m!help``` command.
-- <b>player</b> : handles the database queries and is also shows highest scorers of all time.
-- <b>quiz</b> : The main cog which handles the tournaments and matches.
+- <b>player</b> : Handles the database queries and also shows highest scorers of all time.
+- <b>quiz</b> : The main cog which handles the tournaments by creating brackets and conducts matches by fetching queries from the trivia API.
 
 ## Usage
 
-- Invite the bot to your server from the invite link
+- [Invite the bot to your server from the invite link](https://discordapp.com/oauth2/authorize?client_id=830132289010532372&scope=bot&permissions=603286592)
 - Grant all the necessary permissions
 - Type ``m!help`` to receive all the help you need with the bot.
 
 Some of the common commands are as follows:
 - ```m!help``` : guides the user on how to use other commands
-- ```m!quiz <parameter1> <parameter2> ...``` : creates match brackets and organise the tournament among the users provided
-- ```m!match <match number>``` : conducts matches according to tournament brackets.
-- ```m!highest_scores``` : returns the highest scorers of all time
+- ```m!quiz <parameter1> <parameter2> ...``` : Creates match brackets and organise the tournament among the users provided
+- ```m!match <match number>``` : Conducts matches according to tournament brackets.
+- ```m!highest_scores``` : Returns the highest scorers of all time
 
 
 ## Installation
