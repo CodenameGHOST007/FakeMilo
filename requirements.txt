@@ -6,10 +6,12 @@ chardet==4.0.0
 dblpy==0.4.0
 discord==1.0.1
 discord.py==1.7.1
+dnspython==2.1.0
 humanfriendly==9.1
 idna==2.10
 multidict==5.1.0
 pybase64==1.1.4
+pymongo==3.11.3
 python-dotenv==0.17.0
 ratelimiter==1.2.0.post0
 requests==2.25.1
