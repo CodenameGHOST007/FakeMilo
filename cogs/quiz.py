@@ -5,6 +5,14 @@ from math import ceil
 from humanfriendly import format_timespan
 import util.trivia_api as api
 import random
+import pymongo
+from pymongo import MongoClient
+import os
+
+cluster = MongoClient(os.environ.get('CONNECTION_URL'))
+db = cluster["FakeMiloDB"]
+
+collection = db["BotUsers"]
 
 
 class Quiz(commands.Cog):
@@ -50,24 +58,31 @@ class Quiz(commands.Cog):
     
     
     async def get_schedule(self,ctx):
+        await self.client.wait_until_ready()
         embed = discord.Embed(title="Fake Milos Quiz Match Schedule " , color=discord.Color.blurple())
         embed.set_author(name=str(ctx.author), icon_url=ctx.author.avatar_url)
         
         for i in range(0,self.total_matches):
             res=await self.find_opponents(self.total_matches-i)
+            print(res)
             if res[0]==-1:
                 res[0]="TO BE DECIDED"
             else:
-                res[0]=self.client.get_user(int(res[0])).mention
+                print(res[0])
+                res[0]= await self.client.fetch_user(int(res[0]))
+                res[0] = res[0].mention
             if res[1]==-1:
                 res[1]="TO BE DECIDED"
             else:
-                res[1]=self.client.get_user(int(res[1])).mention
+                print(res[1])
+                res[1]= await self.client.fetch_user(int(res[1]))
+                res[1] = res[1].mention
             res2=self.match_parti[self.total_matches-i]
             if res2==-1:
                 res2="TO BE DECIDED"
             else:
-                res2=self.client.get_user(int(res2)).mention
+                res2= await self.client.fetch_user(int(res2))
+                res2 = res2.mention
             embed.add_field(name='Match no. '+str(i+1),value='1> '+res[0]+'\n2> '+res[1]+'\n **WINNER IS** : '+res2,inline=False)
         return embed
     async def clean_tournament_stats(self):
@@ -169,6 +184,21 @@ class Quiz(commands.Cog):
 
         #let's say parti1 is the winner
         self.match_parti[self.total_matches-match_no+1] = resp.author.id
+
+        is_present = 0
+        for x in collection.find_one({'id' : resp.author.id}):
+            is_present = 1
+        
+        if is_present == 0:
+            collection.insert_one({'id' : resp.author.id , 'won' : 1})
+        else :
+            curr_wins = collection.find_one({'id' : resp.author.id})['won']
+            curr_id = collection.find_one({'id' : resp.author.id})['_id']
+            collection.update_one(
+                {'_id' : curr_id} , 
+                { '$set' : {'id' : resp.author.id , 'won' : curr_wins + 1} }
+            )
+
         self.curr_matchno += 1
         if self.curr_matchno>self.total_matches:
             self.match_ongoing=False
