@@ -14,14 +14,14 @@ class Player(commands.Cog):
     @commands.cooldown(1, 2, commands.BucketType.user)
     @commands.command(pass_context=True)
     async def highest_scores(self , ctx):
-        embed = discord.Embed(title="Fake Milos Server Info" , color=discord.Color.blurple())
+        embed = discord.Embed(title="Fake Milos Highest Scorers" , color=discord.Color.blurple())
         embed.set_author(name=str(ctx.author), icon_url=ctx.author.avatar_url)
         count = 0
         for x in collection.find().sort('won'):
             if count == 10:
                 break
             # print(x['id'] + x['won'])
-            embed.add_field(name=x['id'],value=x['won'],inline=False)
+            embed.add_field(name=x['name'],value='has won ' + str(x['won']) + ' matches',inline=False)
             count += 1
             # await ctx.channel.send(str(x['id']) + ' ' + str(x['won']) + '\n')
         

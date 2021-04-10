@@ -24,19 +24,19 @@ class Quiz(commands.Cog):
         self.match_ongoing = False
 
         #match_parti[match_no] -> determines the winner of the match number <match_no>
-    #    
-    #                 1
-    #             /       \
-            
-    #         2               3
+        #    
+        #                    1
+        #                /       \
+                    
+        #            2               3
 
-    #     /       \          /       \  
-        
-    # 4            5      6           7
-        
-    #     example 2 stores the winner of match between 4 and 5 (Initially it is -1)
-    #     similarly 1 stores winner of march between 2 and 3
-    #     
+        #        /       \          /       \  
+                
+        #      4            5      6           7
+            
+        #     example 2 stores the winner of match between 4 and 5 (Initially it is -1)
+        #     similarly 1 stores winner of march between 2 and 3
+        #     
 
     async def initialise_parti(self,v , l , r,parti):
         if r<l:
@@ -185,18 +185,21 @@ class Quiz(commands.Cog):
         #let's say parti1 is the winner
         self.match_parti[self.total_matches-match_no+1] = resp.author.id
 
+        username = await self.client.fetch_user(resp.author.id)
+        print(username)
+
         is_present = 0
-        for x in collection.find_one({'id' : resp.author.id}):
+        for x in collection.find({'id' : resp.author.id}):
             is_present = 1
         
         if is_present == 0:
-            collection.insert_one({'id' : resp.author.id , 'won' : 1})
+            collection.insert_one({'id' : resp.author.id , 'name' : str(username) , 'won' : 1})
         else :
             curr_wins = collection.find_one({'id' : resp.author.id})['won']
             curr_id = collection.find_one({'id' : resp.author.id})['_id']
             collection.update_one(
                 {'_id' : curr_id} , 
-                { '$set' : {'id' : resp.author.id , 'won' : curr_wins + 1} }
+                { '$set' : {'id' : resp.author.id , 'name' : str(username) , 'won' : curr_wins + 1} }
             )
 
         self.curr_matchno += 1

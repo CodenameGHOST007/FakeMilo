@@ -25,7 +25,7 @@ Some of the common commands are as follows:
 - ```m!help``` : guides the user on how to use other commands
 - ```m!quiz <parameter1> <parameter2> ...``` : creates match brackets and organise the tournament among the users provided
 - ```m!match <match number>``` : conducts matches according to tournament brackets.
-- ```m!highest_cores``` : returns the highest scorers of all time
+- ```m!highest_scores``` : returns the highest scorers of all time
 
 
 ## Installation
