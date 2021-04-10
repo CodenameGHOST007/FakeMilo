@@ -28,19 +28,19 @@ class Quiz(commands.Cog):
     #     similarly 1 stores winner of march between 2 and 3
     #     
 
-    def initialise_parti(v , l , r):
+    async def initialise_parti(v , l , r):
         if l == r:
             match_parti[v] = l
             if curr_matchno < v/2:
                 curr_matchno = v/2
             return
         else:
-            match_parti[v] = -1
-            mid = (l + r) // 2
-            initialise_parti(2*v , l , mid)
-            initialise_parti(2*v+1 , mid , r+1)
+            await match_parti[v] = -1
+            await mid = (l + r) // 2
+            await initialise_parti(2*v , l , mid)
+            await initialise_parti(2*v+1 , mid , r+1)
 
-    def find_opponents(matchNumber):
+    async def find_opponents(matchNumber):
         if match_parti[2*matchNumber] is not -1 and match_parti[2*matchNumber+1] is not -1:
             return [match_parti[2*matchNumber] , match_parti[2*matchNumber+1]]
         return [-1 , -1]
