@@ -2,6 +2,8 @@
 
 FakeMilo is an educational discord bot where you can compete with your friends to a battle of trivia questions.
 
+<a href="https://hack36.com"> <img src="http://bit.ly/BuiltAtHack36" height=20px> </a>
+
 ## Features 
 
 The features of the bot are split into 4 cogs (as of now) each of which caters to a set of commands and functionality.
@@ -63,3 +65,14 @@ Run the following
     python bot.py
 ```
 
+
+### Contributors
+
+Team Name : <b>br1cks</b>
+
+- [Abhinav Koul](https://github.com/CodenameGHOST007)
+- [Aryaman Arora]()
+- [Mridul Bhatt](https://github.com/embiway)
+
+
+<a href="https://hack36.com"> <img src="http://bit.ly/BuiltAtHack36" height=20px> </a>
