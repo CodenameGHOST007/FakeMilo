@@ -19,6 +19,7 @@ The cogs used here are:
 - Technology Stacks
 - Usage
 - Installation
+- Links
 - Contributors
 
 ## Technology Stacks
@@ -77,6 +78,10 @@ Run the following
 ```bash
     python bot.py
 ```
+
+## Links
+- [PPT Link](https://drive.google.com/file/d/1pZF9ZnM99azCAjSJU_Ifd9G_JstyxOGg/view?usp=sharing)
+- [Video Link](https://drive.google.com/file/d/1DrFz3kbjWUoycvkJ-byrvy6Idc91X5ws/view?usp=sharing)
 
 
 ### Contributors
