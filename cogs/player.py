@@ -17,7 +17,7 @@ class Player(commands.Cog):
         embed = discord.Embed(title="Fake Milos Server Info" , color=discord.Color.blurple())
         embed.set_author(name=str(ctx.author), icon_url=ctx.author.avatar_url)
         count = 0
-        for x in collection.find():
+        for x in collection.find().sort('won'):
             if count == 10:
                 break
             # print(x['id'] + x['won'])

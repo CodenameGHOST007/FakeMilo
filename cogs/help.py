@@ -53,7 +53,7 @@ class Help(commands.Cog):
                                   description="Hey there, I am %s! My prefix is **m!**, or you can "
                                               "mention me to use my commands." % guild.me.mention)
             embed.set_author(name=str(guild.me), icon_url=guild.me.avatar_url)
-            #embed.set_footer(text="Requested by "+str(author), icon_url=ctx.author.avatar_url)
+            embed.set_footer(text="Requested by "+str(author), icon_url=ctx.author.avatar_url)
             embed.add_field(name="Important info",value="[Join my support server if you have problem using the commands!]()",inline=False)
             for k in self.info:
                 embed.add_field(name=" <:GhostHug:644518464819560449> `%s`" %(k),value=self.info[k])
