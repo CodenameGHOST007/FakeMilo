@@ -35,8 +35,8 @@ class Quiz(commands.Cog):
                 curr_matchno = v/2
             return
         else:
-            await match_parti[v] = -1
-            await mid = (l + r) // 2
+            match_parti[v] = -1
+            mid = (l + r) // 2
             await initialise_parti(2*v , l , mid)
             await initialise_parti(2*v+1 , mid , r+1)
 
