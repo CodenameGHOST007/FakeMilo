@@ -11,6 +11,10 @@ db = cluster["FakeMiloDB"]
 collection = db["BotUsers"]
 
 class Player(commands.Cog):
+
+    def __init__(self, client):
+        self.client = client
+    
     @commands.cooldown(1, 2, commands.BucketType.user)
     @commands.command(pass_context=True)
     async def highest_scores(self , ctx):
@@ -21,7 +25,7 @@ class Player(commands.Cog):
             if count == 10:
                 break
             # print(x['id'] + x['won'])
-            embed.add_field(name=x['name'],value='has won ' + str(x['won']) + ' matches',inline=False)
+            embed.add_field(name=self.client.fetch_user(x['id']).mention,value='has won ' + str(x['won']) + ' matches',inline=False)
             count += 1
             # await ctx.channel.send(str(x['id']) + ' ' + str(x['won']) + '\n')
         
