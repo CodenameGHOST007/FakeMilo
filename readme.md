@@ -15,6 +15,19 @@ The cogs used here are:
 - <b>player</b> : Handles the database queries and also shows highest scorers of all time.
 - <b>quiz</b> : The main cog which handles the tournaments by creating brackets and conducts matches by fetching queries from the trivia API.
 
+## Table Of Contents
+- Technology Stacks
+- Usage
+- Installation
+- Contributors
+
+## Technology Stacks
+
+- Python 3
+- discord.py
+- Mongo DB
+- Trivia API
+
 ## Usage
 
 - [Invite the bot to your server from the invite link](https://discordapp.com/oauth2/authorize?client_id=830132289010532372&scope=bot&permissions=603286592)
