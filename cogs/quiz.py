@@ -10,7 +10,41 @@ import random
 class Quiz(commands.Cog):
     def __init__(self, client):
         self.client = client
-        #self.match_parti = [[]]
+        self.match_parti = []
+        self.curr_matchno = 0
+
+        #match_parti[match_no] -> determines the winner of the match number <match_no>
+    #    
+    #                 1
+    #             /       \
+            
+    #         2               3
+
+    #     /       \          /       \  
+        
+    # 4            5      6           7
+        
+    #     example 2 stores the winner of match between 4 and 5 (Initially it is -1)
+    #     similarly 1 stores winner of march between 2 and 3
+    #     
+
+    async def initialise_parti(v , l , r):
+        if l == r:
+            match_parti[v] = l
+            if curr_matchno < v/2:
+                curr_matchno = v/2
+            return
+        else:
+            match_parti[v] = -1
+            mid = (l + r) // 2
+            await initialise_parti(2*v , l , mid)
+            await initialise_parti(2*v+1 , mid , r+1)
+
+    async def find_opponents(matchNumber):
+        if match_parti[2*matchNumber] is not -1 and match_parti[2*matchNumber+1] is not -1:
+            return [match_parti[2*matchNumber] , match_parti[2*matchNumber+1]]
+        return [-1 , -1]
+
     @commands.cooldown(1, 2, commands.BucketType.user)
     @commands.command(pass_context=True)
     async def quiz(self, ctx,arg: str=""):
@@ -22,19 +56,28 @@ class Quiz(commands.Cog):
             await ctx.channel.send("Please Enter at least 2 participants")
             return
         
+        random.shuffle(parti)
+
         #make tournament bracket here
+        initialise_parti(1 , 0 , len(parti)-1)
 
     @commands.cooldown(1, 2, commands.BucketType.channel)
     @commands.command(pass_context=True)
     async def match(self,ctx,arg: str=""):
         match_no=0
         try:
-            match_no=0  #assign match no
+            match_no=self.curr_matchno  #assign match no
         except:
             await ctx.channel.send("Please enter proper match number.")
             return
-        #parti1=match_parti[match_no][0]
-        #parti2=match_parti[match_no][1]
+
+
+        if match_no == 1 :
+            pass
+            #winner is decided and his index is in match_parti[1]
+        
+        parti1 , parti2 = findOpponents(match_no)
+
         Api=api.API()
         q1=await Api.get_trivia()          #FORMAT: question, array of options, answer option, field of question
         embed = discord.Embed(title="Fake Milos Quiz Match no. %s" %match_no, color=discord.Color.blurple(),
@@ -63,6 +106,9 @@ class Quiz(commands.Cog):
 
         #update matching tables and stuff
 
+        #let's say parti1 is the winner
+        match_parti[match_no] = parti1
+        match_no -= 1
 
 
 
