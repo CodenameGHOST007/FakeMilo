@@ -5,9 +5,9 @@ from os.path import isfile, join
 from discord import Game
 import random
 from os import environ
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
-load_dotenv()
+#load_dotenv()
 
 description = '''Fake Milos'''
 cogs_dir = "cogs"
